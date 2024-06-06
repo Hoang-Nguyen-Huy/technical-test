@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TasksModule } from './tasks/tasks.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import { Tasks } from './entities/tasks.entity';
+import { TasksHttpModule } from './tasks/tasks-http.module';
 dotenv.config();
 
 @Module({
@@ -19,7 +19,7 @@ dotenv.config();
       entities: [Tasks],
       synchronize: true,
     }),
-    TasksModule],
+    TasksHttpModule],
   controllers: [AppController],
   providers: [AppService],
 })
