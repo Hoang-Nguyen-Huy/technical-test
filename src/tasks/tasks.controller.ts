@@ -1,8 +1,9 @@
-import { Body, Controller, HttpStatus, Param, Post, Put, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, HttpStatus, Param, Post, Put, Res, ValidationPipe } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { TasksDto } from './dto/tasks.dto';
 import { TasksService } from './tasks.service';
 import { ApiResponseDto } from 'src/utils/api-response.dto';
+import { Response } from 'express';
 
 @ApiTags('Tasks')
 @Controller('tasks')
@@ -22,15 +23,24 @@ export class TasksController {
     }
 
     @Put('/:taskId')
-    async updateTasks(@Body(new ValidationPipe) tasksDto: TasksDto, @Param('taskId') taskId: string): Promise<ApiResponseDto> {
-        console.log(taskId);
+    async updateTasks(@Body(new ValidationPipe) tasksDto: TasksDto, @Param('taskId') taskId: string, @Res() res: Response): Promise<ApiResponseDto> {
         const responseData = await this.tasksService.updateTasks(tasksDto, taskId);
         if (responseData === 'Update fail') {
-            return new ApiResponseDto(HttpStatus.BAD_REQUEST, null, responseData);
+            return res.status(400).json(new ApiResponseDto(HttpStatus.BAD_REQUEST, null, responseData));
         } else if (responseData === 'Task not found') {
-            return new ApiResponseDto(HttpStatus.NOT_FOUND, null, responseData);
+            return res.status(404).json(new ApiResponseDto(HttpStatus.NOT_FOUND, null, responseData));
         } else {
-            return new ApiResponseDto(HttpStatus.OK, null, responseData);
+            return res.status(200).json(new ApiResponseDto(HttpStatus.OK, null, responseData));
+        }
+    }
+
+    @Delete('/:taskId')
+    async deleteTasks(@Param('taskId') taskId: string, @Res() res: Response): Promise<ApiResponseDto> {
+        const responseData = await this.tasksService.deleteTasks(taskId);
+        if (responseData === 'Delete fail') {
+            return res.status(400).json(new ApiResponseDto(HttpStatus.BAD_REQUEST, null, responseData));
+        } else {
+            return res.status(200).json(new ApiResponseDto(HttpStatus.OK, null, responseData));
         }
     }
 }

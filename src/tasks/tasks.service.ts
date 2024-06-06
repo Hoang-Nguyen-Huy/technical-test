@@ -19,7 +19,6 @@ export class TasksService {
 
     async updateTasks(tasksDto: TasksDto, taskId: string): Promise<string> {
         const taskUp = await this.findById(taskId);
-        console.log(taskId);
         if (taskUp) {
             const res = (await this.tasksRepository.update(taskId, tasksDto)).affected;
             if (res === 0) {
@@ -29,6 +28,14 @@ export class TasksService {
             }
         }
         return 'Task not found';
+    }
+
+    async deleteTasks(taskId: string): Promise<string> {
+        const res = await this.tasksRepository.delete(taskId);
+        if (res.affected === 0) {
+            return 'Delete fail';
+        }
+        return 'Delete success';
     }
 
     async findById(taskId: string): Promise<Tasks> {
