@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, HttpStatus, Param, Post, Put, Res, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, Res, ValidationPipe } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { TasksDto } from './dto/tasks.dto';
 import { TasksService } from './tasks.service';
@@ -11,6 +11,16 @@ export class TasksController {
     constructor(
         private readonly tasksService: TasksService
     ) {};
+
+    @Get('/:taskId')
+    async getTask(@Param('taskId') taskId: string, @Res() res: Response) {
+        const responseData = await this.tasksService.findById(taskId);
+        if (!responseData) {
+            return res.status(404).json(new ApiResponseDto(HttpStatus.NOT_FOUND, responseData, 'Task not found'));
+        } else {
+            return res.status(200).json(new ApiResponseDto(HttpStatus.OK, responseData, 'Get task sucess'));
+        }
+    }
 
     @Post()
     async createTasks(@Body(new ValidationPipe) tasksDto: TasksDto): Promise<ApiResponseDto> {
