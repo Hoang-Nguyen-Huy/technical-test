@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Tasks } from 'src/entities/tasks.entity';
 import { Repository } from 'typeorm';
@@ -14,9 +14,19 @@ export class TasksService {
     ) {};
 
     async getTasks(filter: TaskFilterDto) {
-        filter.page < 1 ? 1 : filter.page;
-        filter.take < 1 ? 1 : filter.take;
-        return await this.tasksRepository.findAndCount({ take: filter.take, skip: filter.take*(filter.page - 1) });
+        if (filter.page < 1 || filter.take < 1) {
+            throw new InternalServerErrorException();
+        }
+        const query = this.tasksRepository.createQueryBuilder('task');
+
+        if (filter.status) {
+            query.andWhere('task.status = :status', { status: filter.status });
+        }
+
+        query.skip(filter.take * (filter.page - 1))
+            .take(filter.take);
+
+        return await query.getManyAndCount();
     }
 
     async createTasks(tasksDto: TasksDto) {
