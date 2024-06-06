@@ -4,6 +4,7 @@ import { Tasks } from 'src/entities/tasks.entity';
 import { Repository } from 'typeorm';
 import { TasksDto } from './dto/tasks.dto';
 import { Status } from 'src/enum/status.enum';
+import { TaskFilterDto } from './dto/tasks-filter.dto';
 
 @Injectable()
 export class TasksService {
@@ -11,6 +12,12 @@ export class TasksService {
         @InjectRepository(Tasks)
         private tasksRepository: Repository<Tasks>
     ) {};
+
+    async getTasks(filter: TaskFilterDto) {
+        filter.page < 1 ? 1 : filter.page;
+        filter.take < 1 ? 1 : filter.take;
+        return await this.tasksRepository.findAndCount({ take: filter.take, skip: filter.take*(filter.page - 1) });
+    }
 
     async createTasks(tasksDto: TasksDto) {
         tasksDto.status === Status.Completed ? Status.Completed : Status.Incompleted;

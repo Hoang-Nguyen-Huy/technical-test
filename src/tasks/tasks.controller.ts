@@ -1,9 +1,13 @@
-import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, Res, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, Query, Res, ValidationPipe } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { TasksDto } from './dto/tasks.dto';
 import { TasksService } from './tasks.service';
 import { ApiResponseDto } from 'src/utils/api-response.dto';
 import { Response } from 'express';
+import { TaskFilterDto } from './dto/tasks-filter.dto';
+import { PaginationDto } from 'src/utils/pagination.dto';
+import { DtoMapper } from 'src/utils/dto-mapper.dto';
+import { TasksResponseDto } from './dto/tasks-response.dto';
 
 @ApiTags('Tasks')
 @Controller('tasks')
@@ -11,6 +15,12 @@ export class TasksController {
     constructor(
         private readonly tasksService: TasksService
     ) {};
+
+    @Get()
+    async getTasks(@Query() filter: TaskFilterDto) {
+        const [tasks, count] = await this.tasksService.getTasks(filter);
+        return PaginationDto.from(DtoMapper.mapMany(tasks, TasksResponseDto), filter, count);
+    }
 
     @Get('/:taskId')
     async getTask(@Param('taskId') taskId: string, @Res() res: Response) {
