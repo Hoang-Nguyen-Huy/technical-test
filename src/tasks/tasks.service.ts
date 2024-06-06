@@ -16,4 +16,28 @@ export class TasksService {
         tasksDto.status === Status.Completed ? Status.Completed : Status.Incompleted;
         return this.tasksRepository.save(tasksDto);
     }
+
+    async updateTasks(tasksDto: TasksDto, taskId: string): Promise<string> {
+        const taskUp = await this.findById(taskId);
+        console.log(taskId);
+        if (taskUp) {
+            const res = (await this.tasksRepository.update(taskId, tasksDto)).affected;
+            if (res === 0) {
+                return 'Update fail';
+            } else {
+                return 'Update success';
+            }
+        }
+        return 'Task not found';
+    }
+
+    async findById(taskId: string): Promise<Tasks> {
+        const existTask = await this.tasksRepository.findOne({
+            where: {
+                taskId: taskId
+            }
+        });
+        return existTask;
+    }
 }
+
