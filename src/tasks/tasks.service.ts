@@ -14,7 +14,10 @@ export class TasksService {
     ) {};
 
     async getTasks(filter: TaskFilterDto) {
-        if (filter.page < 1 || filter.take < 1) {
+        if (filter.page < 1) {
+            throw new InternalServerErrorException();
+        }
+        if (filter.take < 0) {
             throw new InternalServerErrorException();
         }
         const query = this.tasksRepository.createQueryBuilder('task');
