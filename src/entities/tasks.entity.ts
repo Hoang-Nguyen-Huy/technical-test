@@ -1,4 +1,4 @@
-import { Status } from "src/enum/status.enum";
+import { Status } from "../enum/status.enum";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()

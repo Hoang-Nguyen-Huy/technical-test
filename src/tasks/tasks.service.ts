@@ -1,9 +1,9 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Tasks } from 'src/entities/tasks.entity';
+import { Tasks } from '../entities/tasks.entity';
 import { Repository } from 'typeorm';
 import { TasksDto } from './dto/tasks.dto';
-import { Status } from 'src/enum/status.enum';
+import { Status } from '../enum/status.enum';
 import { TaskFilterDto } from './dto/tasks-filter.dto';
 
 @Injectable()
