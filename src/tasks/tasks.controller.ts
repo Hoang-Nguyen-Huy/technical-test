@@ -1,13 +1,13 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, Query, Res, ValidationPipe } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { TasksDto } from './dto/tasks.dto';
 import { TasksService } from './tasks.service';
-import { ApiResponseDto } from 'src/utils/api-response.dto';
+import { ApiResponseDto } from '../utils/api-response.dto';
 import { Response } from 'express';
-import { TaskFilterDto } from './dto/tasks-filter.dto';
-import { PaginationDto } from 'src/utils/pagination.dto';
-import { DtoMapper } from 'src/utils/dto-mapper.dto';
-import { TasksResponseDto } from './dto/tasks-response.dto';
+import { TaskFilterDto } from '../dto/tasks-filter.dto';
+import { PaginationDto } from '../utils/pagination.dto';
+import { DtoMapper } from '../utils/dto-mapper.dto';
+import { TasksResponseDto } from '../dto/tasks-response.dto';
+import { TasksDto } from '../dto/tasks.dto';
 
 @ApiTags('Tasks')
 @Controller('tasks')
@@ -28,7 +28,7 @@ export class TasksController {
         if (!responseData) {
             return res.status(404).json(new ApiResponseDto(HttpStatus.NOT_FOUND, responseData, 'Task not found'));
         } else {
-            return res.status(200).json(new ApiResponseDto(HttpStatus.OK, responseData, 'Get task sucess'));
+            return res.status(200).json(new ApiResponseDto(HttpStatus.OK, responseData, 'Get task success'));
         }
     }
 

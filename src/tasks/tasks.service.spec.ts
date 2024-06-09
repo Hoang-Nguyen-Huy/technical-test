@@ -3,8 +3,8 @@ import { TasksService } from './tasks.service';
 import { Repository } from 'typeorm';
 import { Tasks } from '../entities/tasks.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { TaskFilterDto } from './dto/tasks-filter.dto';
-import { TasksDto } from './dto/tasks.dto';
+import { TaskFilterDto } from '../dto/tasks-filter.dto';
+import { TasksDto } from '../dto/tasks.dto';
 import { Status } from '../enum/status.enum';
 import { v4 as uuidv4 } from 'uuid';
 

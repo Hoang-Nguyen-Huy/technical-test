@@ -1,6 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty } from "class-validator";
-import { BaseFilterDto } from "src/utils/base-filter.dto";
+import { BaseFilterDto } from "../utils/base-filter.dto";
 
 export class TaskFilterDto extends BaseFilterDto {
     @ApiProperty()
