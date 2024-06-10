@@ -95,12 +95,16 @@ You'll see the list of available endpoints. The `tasks` endpoints are grouped un
 
 ###### a. Get Tasks
 
+![image](https://github.com/Hoang-Nguyen-Huy/technical-test/assets/121879570/6fa64151-723a-4d60-9b6a-23565e152f80)
+
 - Click on the **GET /tasks** endpoint.
 - Click the **Try it out** button.
 - Add query parameters to filter the tasks, the **status** should be **incompleted** or **completed**.
 - Click the **Execute** button to see the response.
 
 ###### b. Create Task
+
+![image](https://github.com/Hoang-Nguyen-Huy/technical-test/assets/121879570/e975fbe2-a418-4a39-b85c-41e29465a1cf)
 
 - Click on the **POST /tasks** endpoint.
 - Click the **Try it out** button.
@@ -116,12 +120,16 @@ You'll see the list of available endpoints. The `tasks` endpoints are grouped un
 
 ###### c. Get Task by ID
 
+![image](https://github.com/Hoang-Nguyen-Huy/technical-test/assets/121879570/d68685e6-a2a1-42c1-8b17-0cc49df93802)
+
 - Click on the **GET /tasks/{taskId}** endpoint.
 - Click the **Try it out** button.
 - Enter a valid **taskId**
 - Click the **Execute** button to see the response.
 
 ###### d. Update Task
+
+![image](https://github.com/Hoang-Nguyen-Huy/technical-test/assets/121879570/a129fc4f-3298-4cf5-a8b3-08135f00c309)
 
 - Click on the **PUT /tasks/{taskId}** endpoint.
 - Click the **Try it out** button.
@@ -137,6 +145,8 @@ You'll see the list of available endpoints. The `tasks` endpoints are grouped un
 - Click the **Execute** button to see the response.
 
 ###### e. Delete Task
+
+![image](https://github.com/Hoang-Nguyen-Huy/technical-test/assets/121879570/8b008cc3-b801-4770-b071-3a097f2cef3d)
 
 - Click on the **DELETE /tasks/{taskId}** endpoint.
 - Click the **Try it out** button.
