@@ -28,9 +28,9 @@
 
 ## Prerequisites
 
-- Node.js
-- npm
-- Git
+- [Node.js](https://nodejs.org/) (>= 12.x recommended)
+- [npm](https://www.npmjs.com/get-npm) (>= 6.x)
+- [Git](https://git-scm.com/)
 
 ## Getting Started
 
