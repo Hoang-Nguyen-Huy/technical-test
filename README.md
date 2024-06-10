@@ -77,6 +77,72 @@ This project uses Swagger to document the API. To view the API documentation, ru
 
 Swagger is already set up in the project. If you need to modify the configuration, you can find it in the **main.ts** file.
 
+## Using Swagger to Test the API
+
+Swagger provides a user-friendly interface for testing the API. Here are the steps to test the Tasks controller using Swagger:
+
+#### 1. Open Swagger UI
+
+Run the application and navigate to [http://localhost:3000/api](http://localhost:3000/api) in your browser
+
+#### 2. Explore the Endpoints
+
+You'll see the list of available endpoints. The `tasks` endpoints are grouped under the **Tasks** tag.
+
+![image](https://github.com/Hoang-Nguyen-Huy/technical-test/assets/121879570/67fd9f75-5827-4b3a-80bd-0a91ecab8697)
+
+#### 3. Test the API
+
+###### a. Get Tasks
+
+- Click on the **GET /tasks** endpoint.
+- Click the **Try it out** button.
+- Add query parameters to filter the tasks, the **status** should be **incompleted** or **completed**.
+- Click the **Execute** button to see the response.
+
+###### b. Create Task
+
+- Click on the **POST /tasks** endpoint.
+- Click the **Try it out** button.
+- Enter the task details in the request body in JSON format, the **status** is optional, it will be **incompleted** if you let it empty, for example:
+```json
+{
+  "title": "Test",
+  "description": "Test tasks",
+  "status": "incompleted"
+}
+```
+- Click the **Execute** button to see the response.
+
+###### c. Get Task by ID
+
+- Click on the **GET /tasks/{taskId}** endpoint.
+- Click the **Try it out** button.
+- Enter a valid **taskId**
+- Click the **Execute** button to see the response.
+
+###### d. Update Task
+
+- Click on the **PUT /tasks/{taskId}** endpoint.
+- Click the **Try it out** button.
+- Enter a valid **taskId**.
+- Enter the updated task details in the request body in JSON format, for example:
+```json
+{
+  "title": "Test",
+  "description": "Test tasks",
+  "status": "incompleted"
+}
+```
+- Click the **Execute** button to see the response.
+
+###### e. Delete Task
+
+- Click on the **DELETE /tasks/{taskId}** endpoint.
+- Click the **Try it out** button.
+- Enter a valid **taskId**.
+- Click the **Execute** button to see the response.
+
 ## Testing
 
 ```bash
