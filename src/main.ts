@@ -5,7 +5,24 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.enableCors();
+  const header = [
+    'Accept',
+    'Access-Control-Allow-Headers',
+    'Access-Control-Allow-Methods',
+    'Access-Control-Allow-Origin',
+    'Authorization',
+    'Content-Type',
+    'Origin',
+    'X-Requested-With',
+  ];
+
+  app.enableCors({
+    origin: ["*"],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: header,
+    exposedHeaders: header,
+    credentials: true,
+  });
 
   const config = new DocumentBuilder()
     .setTitle('Technical Test')
