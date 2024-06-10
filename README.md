@@ -26,7 +26,31 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
+## Prerequisites
+
+- Node.js
+- npm
+- Git
+
+## Getting Started
+
+### Clone the Repository
+
+First, clone the repository to your local machine: 
+
+```bash
+$ git clone https://github.com/Hoang-Nguyen-Huy/technical-test.git
+```
+
+then access to the project
+
+```bash
+$ cd technical-test
+```
+
+## Installation Dependencies
+
+Install the required dependencies using npm: 
 
 ```bash
 $ npm install
@@ -45,17 +69,19 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## API Documentation
+
+This project uses Swagger to document the API. To view the API documentation, run the application and open your browser to: [http://localhost:3000/api](http://localhost:3000/api)
+
+### Setting Up Swagger
+
+Swagger is already set up in the project. If you need to modify the configuration, you can find it in the **main.ts** file.
+
 ## Test
 
 ```bash
 # unit tests
 $ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
 
 ## Support
