@@ -48,7 +48,7 @@ then access to the project
 $ cd technical-test
 ```
 
-## Installation Dependencies
+## Installing Dependencies
 
 Install the required dependencies using npm: 
 
@@ -77,7 +77,7 @@ This project uses Swagger to document the API. To view the API documentation, ru
 
 Swagger is already set up in the project. If you need to modify the configuration, you can find it in the **main.ts** file.
 
-## Test
+## Testing
 
 ```bash
 # unit tests
